@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Для тебя, моё сердечко 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-light: #ffe6e6;
+      --pink-medium: #ff6b81;
+      --pink-dark: #d6336c;
+      --pink-darker: #ff4d6d;
+      --white: #fff;
+      --shadow: 0 4px 30px rgba(214, 51, 108, 0.2);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--pink-light), var(--white));
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff6b81" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      color: var(--pink-dark);
+      margin-bottom: 10px;
+      animation: fadeInDown 1.5s ease;
+      font-weight: 500;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      font-family: 'Marck Script', cursive;
+    }
+
+    .heart-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s;
+    }
+
+    .heart-container:hover {
+      transform: scale(1.1);
+    }
+
+    .heart {
+      position: relative;
+      width: 100px;
+      height: 90px;
+      background-color: var(--pink-medium);
+      transform: rotate(-45deg);
+      animation: pulse 2s infinite ease-in-out;
+      box-shadow: 0 0 40px rgba(255, 107, 129, 0.6);
+      cursor: pointer;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background-color: var(--pink-medium);
+      border-radius: 50%;
+    }
+
+    .heart:before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart:after {
+      top: 0;
+      left: 50px;
+    }
+
+    .heart-glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(255,107,129,0.8) 0%, rgba(255,107,129,0) 70%);
+      border-radius: 50%;
+      animation: glow 2s infinite alternate;
+      opacity: 0;
+    }
+
+    .letter {
+      max-width: 600px;
+      font-size: 1.2em;
+      margin: 30px 0;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      animation: fadeIn 2s ease;
+      line-height: 1.8;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 107, 129, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .letter:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(214, 51, 108, 0.3);
+    }
+
+    .letter:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #ff6b81, #ffb3c1, #ff6b81);
+      z-index: -1;
+      filter: blur(20px);
+      opacity: 0.4;
+      animation: gradientBG 8s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    button {
+      background: linear-gradient(to right, var(--pink-darker), var(--pink-medium));
+      color: var(--white);
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.1em;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(214, 51, 108, 0.3);
+      position: relative;
+      overflow: hidden;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(214, 51, 108, 0.4);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, var(--pink-medium), var(--pink-darker));
+      z-index: -1;
+      transition: opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    button:hover:after {
+      opacity: 1;
+    }
+
+    .phrase {
+      margin-top: 30px;
+      font-size: 1.4em;
+      color: var(--pink-dark);
+      min-height: 2em;
+      white-space: pre-wrap;
+      animation: fadeIn 1s ease;
+      font-family: 'Marck Script', cursive;
+      line-height: 1.6;
+      max-width: 80%;
+      transition: all 0.3s;
+    }
+
+    .phrase:hover {
+      transform: scale(1.05);
+    }
+
+    .kiss-mark {
+      position: absolute;
+      font-size: 24px;
+      opacity: 0;
+      z-index: 5;
+      pointer-events: none;
+      animation: kissFade 2s forwards;
+    }
+
+    .hidden-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+
+    .hidden-message.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .hidden-message-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      max-width: 80%;
+      text-align: center;
+      transform: scale(0.8);
+      transition: transform 0.5s;
+    }
+
+    .hidden-message.show .hidden-message-content {
+      transform: scale(1);
+    }
+
+    .close-message {
+      margin-top: 20px;
+      background: var(--pink-medium);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .drag-hearts {
+      position: fixed;
+      font-size: 24px;
+      z-index: 10;
+      user-select: none;
+      cursor: grab;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.1); }
+    }
+
+    @keyframes glow {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1.2); opacity: 0.6; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes kissFade {
+      0% { transform: translateY(0) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+    }
+
+    /* Floating hearts */
+    .floating-heart {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      color: var(--pink-medium);
+      animation: float linear infinite;
+      z-index: 1;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(255, 107, 129, 0.6);
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(calc(-50px + (var(--random-x) * 100px))) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: var(--pink-medium);
+      opacity: 0;
+      z-index: 10;
+      animation: confettiFall 5s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Cursor hearts */
+    .cursor-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 20px;
+      opacity: 0;
+      animation: cursorHeart 1.5s forwards;
+    }
+
+    @keyframes cursorHeart {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -150%) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+      .letter {
+        font-size: 1em;
+        padding: 20px;
+      }
+      .phrase {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.textContent = ["❤️", "💖", "💗", "💓", "💘"][Math.floor(Math.random() * 5)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.setProperty('--random-x', Math.random() * 2 - 1);
+      heart.style.fontSize = 16 + Math.random() * 20 + "px";
+      heart.style.animationDuration = 5 + Math.random() * 10 + "s";
+      heart.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div class="container">
+    <h1>Привет, моё сердечко 💖</h1>
+
+    <div class="heart-container" onclick="createKiss(event)">
+      <div class="heart-glow"></div>
+      <div class="heart" onclick="showHiddenMessage()"></div>
+    </div>
+
+    <div class="letter" onclick="createDragHeart(event)">
+      Я не знаю, как правильно сказать это словами, но с каждым днём я всё сильнее понимаю одно...<br><br>
+      <span style="font-family: 'Marck Script', cursive; font-size: 1.3em; color: var(--pink-dark);">
+        Ты — моя радість, мій спокій, моє життя. <br>
+        Я кохаю тебе — и точка. Без условий, без причин, просто потому что ты есть.
+      </span>
+    </div>
+
+    <button onclick="showNext()">Нажми, если чувствуешь то же 💞</button>
+
+    <div class="phrase" id="phrase"></div>
+  </div>
+
+  <!-- Hidden message -->
+  <div class="hidden-message" id="hiddenMessage">
+    <div class="hidden-message-content">
+      <h2 style="font-family: 'Marck Script', cursive; color: var(--pink-dark);">Сюрприз! 💝</h2>
+      <p>Я знаю, что ты нажмёшь на каждое сердечко на этой странице...</p>
+      <p>Потому что ты так же любишь меня, как я люблю тебя! 💘</p>
+      <button class="close-message" onclick="closeHiddenMessage()">Обнять в ответ 🤗</button>
+    </div>
+  </div>
+
+  <script>
+    const phrases = [
+      "Ты — самое светлое, что со мной случалось 🌸",
+      "Иногда мне страшно, как сильно я тебя люблю...",
+      "Без тебя даже тишина кажется громкой",
+      "С тобой — даже звёзды ближе ✨",
+      "Твоя усмішка лікує все погане",
+      "Навіть коли мовчиш — я відчуваю твоє тепло 💫",
+      "Я просто кохаю тебе. Це все, що потрібно 💘",
+      "Ты — мой любимый человек во всей вселенной",
+      "Каждый день с тобой — подарок судьбы",
+      "Любовь моя к тебе — безгранична, как океан 🌊",
+      "Ты делаешь мой мир ярче 🌈",
+      "Мне повезло, что ты есть в моей жизни",
+      "Ты — мое самое большое счастье",
+      "Я скучаю по тебе, даже когда ты рядом",
+      "Твой смех — моя любимая мелодия"
+    ];
+
+    let index = 0;
+    let typingInterval;
+    let dragHearts = [];
+
+    function typeText(text, element) {
+      let i = 0;
+      element.textContent = '';
+      clearInterval(typingInterval);
+      typingInterval = setInterval(() => {
+        if (i < text.length) {
+          element.textContent += text[i++];
+        } else {
+          clearInterval(typingInterval);
+          createConfetti();
+        }
+      }, 50);
+    }
+
+    function showNext() {
+      const phraseDiv = document.getElementById("phrase");
+      if (index < phrases.length) {
+        typeText(phrases[index], phraseDiv);
+        index++;
+      } else {
+        typeText("Это не конец... потому что любовь — бесконечна 💞", phraseDiv);
+        index = 0;
+      }
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 30 + 330}, 100%, ${Math.random() * 20 + 70}%)`;
+        confetti.style.width = 5 + Math.random() * 10 + "px";
+        confetti.style.height = 5 + Math.random() * 10 + "px";
+        confetti.style.animationDuration = 3 + Math.random() * 3 + "s";
+        confetti.style.animationDelay = Math.random() * 0.5 + "s";
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+    }
+
+    function createKiss(event) {
+      const kiss = document.createElement("div");
+      kiss.className = "kiss-mark";
+      kiss.textContent = "💋";
+      kiss.style.left = (event.clientX - 15) + "px";
+      kiss.style.top = (event.clientY - 15) + "px";
+      document.body.appendChild(kiss);
+      
+      setTimeout(() => {
+        kiss.remove();
+      }, 2000);
+    }
+
+    function showHiddenMessage() {
+      document.getElementById("hiddenMessage").classList.add("show");
+    }
+
+    function closeHiddenMessage() {
+      document.getElementById("hiddenMessage").classList.remove("show");
+      createConfetti();
+    }
+
+    function createDragHeart(event) {
+      const heart = document.createElement("div");
+      heart.className = "drag-hearts";
+      heart.textContent = ["❤️", "💖", "💗", "💓", "💘"][Math.floor(Math.random() * 5)];
+      heart.style.left = (event.clientX - 15) + "px";
+      heart.style.top = (event.clientY - 15) + "px";
+      heart.style.fontSize = (20 + Math.random() * 30) + "px";
+      heart.style.color = `hsl(${Math.random() * 30 + 330}, 100%, 70%)`;
+      document.body.appendChild(heart);
+      dragHearts.push(heart);
+
+      let isDragging = false;
+      let offsetX, offsetY;
+
+      heart.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - heart.getBoundingClientRect().left;
+        offsetY = e.clientY - heart.getBoundingClientRect().top;
+        heart.style.cursor = 'grabbing';
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        heart.style.left = (e.clientX - offsetX) + 'px';
+        heart.style.top = (e.clientY - offsetY) + 'px';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        heart.style.cursor = 'grab';
+      });
+
+      heart.addEventListener('dblclick', () => {
+        heart.remove();
+        dragHearts = dragHearts.filter(h => h !== heart);
+        createConfetti();
+      });
+    }
+
+    // Cursor hearts
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON' || e.target.classList.contains('heart') || e.target.classList.contains('letter')) return;
+      
+      const heart = document.createElement("div");
+      heart.className = "cursor-heart";
+      heart.textContent = ["❤️", "💖", "💗", "💓", "💘"][Math.floor(Math.random() * 5)];
+      heart.style.left = e.clientX + "px";
+      heart.style.top = e.clientY + "px";
+      document.body.appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, 1500);
+    });
+
+    // Initial animation
+    setTimeout(() => {
+      createConfetti();
+    }, 1500);
+
+    // Easter egg - secret message after 10 clicks
+    let clickCount = 0;
+    document.body.addEventListener('click', () => {
+      clickCount++;
+      if (clickCount === 10) {
+        const phraseDiv = document.getElementById("phrase");
+        typeText("Я знаю, что ты кликаешь везде... Любопытная моя 💋", phraseDiv);
+      }
+    });
+  </script>
+
+</body>
+</html>
